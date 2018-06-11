@@ -1,0 +1,13 @@
+RewriteEngine On
+
+#Check if the file exists. If that's the case rewrite the uri with itself
+#and end the process... To rewrite the uri we capture everything and store it
+#as $1, which we use as the final destination.
+RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI} -f
+RewriteRule ^(.*)$ $1 [L,END,QSA]
+
+#Alternative writing of the rule above...
+#RewriteRule ^ %{REQUEST_URI} [L,END,QSA]
+
+#Fallback condition: everything else goes to main.
+RewriteRule . main.php [QSA]
