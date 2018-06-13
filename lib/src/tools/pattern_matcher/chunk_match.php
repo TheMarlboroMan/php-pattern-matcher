@@ -62,7 +62,6 @@ class chunk_match extends chunk {
 
 			//We might have arrived at the end of the test string. If we didn't break we are fine.
 			if($_i==$last_index && null===$this->last_character) {
-				++$_i;
 				break;
 			}
 
@@ -72,6 +71,7 @@ class chunk_match extends chunk {
 				break;
 			}
 
+			$val.=$char;
 			switch($this->type) {
 				//TODO: What about negative numbers?
 				case self::type_integer: if(!ctype_digit($char)) return false; break;
