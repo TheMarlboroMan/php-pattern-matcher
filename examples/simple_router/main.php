@@ -2,7 +2,6 @@
 require("../../lib/autoload.php");
 
 abstract class entrypoint {
-
 	public abstract function execute(\tools\pattern_matcher\result $_res);
 }
 
@@ -13,15 +12,13 @@ class entrypoint_a {
 }
 
 class entrypoint_b {
-
 	public function execute(\tools\pattern_matcher\result $_res) {
-
 		return "This is entrypoint b talking, with id set to ".$_res->get_parameter('id')->get_value();
 	}
 }
 
-$uri=$_SERVER['REQUEST_URI'];
 $fp=\tools\pattern_matcher\matcher::from_file('config/routing.json');
+$uri=$_SERVER['REQUEST_URI'];
 $match=$fp->match($uri);
 
 if(!$match->is_match()) {

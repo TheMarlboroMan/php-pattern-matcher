@@ -1,4 +1,4 @@
 {"patterns":[
-	{"name" : "entrypoint_a", "pattern" : "/php-pattern-matcher/examples/simple_router/entry-a.html"},
+	{"name" : "entrypoint_a", "pattern" : "/php-pattern-matcher/examples/simple_router/entry_a.html"},
 	{"name" : "entrypoint_b", "pattern" : "/php-pattern-matcher/examples/simple_router/[id:int]/entry_b.html"}
 ]}
