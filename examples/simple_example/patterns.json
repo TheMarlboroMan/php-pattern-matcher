@@ -1,0 +1,6 @@
+{"patterns":[
+	{"name" : "composite_path", "pattern" : "let/[type:int]/thing/[id:int]/and/[val:alpha]/index.html"},
+	{"name" : "another_string", "pattern" : "let/another_string/[val:alpha]"},
+	{"name" : "final",			"pattern" : "let/[type:int]/end"},
+	{"name" : "simple",			"pattern" : "simple-path"}
+]}
