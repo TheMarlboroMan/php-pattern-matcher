@@ -92,7 +92,8 @@ class matcher {
 		if(!count($this->list)) {
 			throw new pattern_matcher_exception("matcher cannot be empty");
 		}
-
+/*
+		//TODO: There's no need, actually, maybe we could just extend.
 		$names=[];
 		foreach($this->list as $k => $v) {
 
@@ -102,5 +103,6 @@ class matcher {
 			}
 			$names[]=$curname;
 		}
+*/
 	}
 }
