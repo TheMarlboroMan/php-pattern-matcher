@@ -13,8 +13,8 @@
 				"method":"do_stuff",
 				"params":[
 					{"name":"id", "source":"param", "default":null,"optional":false},
-					{"name":"compulsory", "source":"post", "default":null, "optional":false},
-					{"name":"optional", "source":"post", "default":null, "optional":true}
+					{"name":"compulsory", "source":"post", "default":"LALALA", "optional":true},
+					{"name":"optional", "source":"post", "default":"i am A DEFAULT VALUE", "optional":true}
 	]}}
 
 ]}

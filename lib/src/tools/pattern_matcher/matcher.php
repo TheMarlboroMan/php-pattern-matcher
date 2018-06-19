@@ -78,7 +78,7 @@ class matcher {
 			}
 		}
 
-		return new result(false, null, []);
+		return new result(false, null, null, []);
 	}
 
 	//!Constructor. Needs an array of patterns.
