@@ -9,10 +9,13 @@ namespace tools\pattern_matcher;
 //!A pattern is identified by its name, which will be returned upon calling
 //!matcher::match, along with every variable chunk resolved to a pair name:value
 //!in a "parameter".
+//!Patterns may include a metadata node, which will be included "as is"
+//!in a stdClass object.
 class pattern {
 
 	private	$raw_pattern;
 	private	$name;
+	private $metadata;
 	private $chunks=[];
 
 	const chr_open='[';
@@ -23,10 +26,11 @@ class pattern {
 
 	//!$_p is the string pattern, $_i is the name (string). Will throw if
 	//!the pattern cannot be prepared.
-	public function		__construct($_p, $_i) {
+	public function		__construct($_p, $_i, $_m=null) {
 
 		$this->raw_pattern=$_p;
 		$this->name=$_i;
+		$this->metadata=$_m;
 
 		$this->prepare();
 		$this->check_integrity();
@@ -63,7 +67,7 @@ class pattern {
 			return null;
 		}
 
-		return new result(true, $this->name, $results);
+		return new result(true, $this->name, $this->metadata, $results);
 	}
 
 	//!Returns the pattern name.

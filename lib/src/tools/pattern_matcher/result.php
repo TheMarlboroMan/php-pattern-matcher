@@ -9,13 +9,18 @@ class result {
 
 	private	$success;
 	private $name;
+	private $metadata;
 	private $params=[];
 
-	//!$_s is a boolean, $_n is a string, $_m is an array of parameter.
-	public function __construct($_s, $_n, array $_m) {
+
+	//!$_s is a boolean, $_n is a string, $_md is the metadata object, which
+	//!may be null. $_m is an array of parameter.
+	public function __construct($_s, $_n, $_md, array $_m) {
 		$this->success=$_s;
 		$this->name=$_n;
+		$this->metadata=$_md;
 		$this->params=$_m;
+		//TODO: Add meta...
 	}
 
 	//!returns true if a match was found, false if not.
@@ -31,6 +36,11 @@ class result {
 	//!returns the resolved parameters of the pattern matched, if any.
 	public function get_parameters() {
 		return $this->params;
+	}
+
+	//!returns the stdObject metadata object.
+	public function get_metadata() {
+		return $this->metadata;
 	}
 
 	//!returns true if a parameter with the given name is found.

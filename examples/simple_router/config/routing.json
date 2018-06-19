@@ -1,4 +1,20 @@
 {"patterns":[
-	{"name" : "entrypoint_a", "pattern" : "/php-pattern-matcher/examples/simple_router/entry_a.html"},
-	{"name" : "entrypoint_b", "pattern" : "/php-pattern-matcher/examples/simple_router/[id:int]/entry_b.html"}
+	{
+			"name" : "entrypoint_a",
+			"pattern" : "/php-pattern-matcher/examples/simple_router/entry_a.html",
+			"metadata" : {
+				"method":"execute",
+				"params": []
+			}},
+	{
+			"name" : "entrypoint_b",
+			"pattern" : "/php-pattern-matcher/examples/simple_router/[id:int]/entry_b.html",
+			"metadata" : {
+				"method":"do_stuff",
+				"params":[
+					{"name":"id", "source":"param", "default":null,"optional":false},
+					{"name":"compulsory", "source":"post", "default":null, "optional":false},
+					{"name":"optional", "source":"post", "default":null, "optional":true}
+	]}}
+
 ]}

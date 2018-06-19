@@ -35,7 +35,8 @@ class matcher {
 				throw new pattern_matcher_exception("file '$_filename' contains malformed patterns");
 			}
 
-			$list[]=new pattern($v->pattern, $v->name);
+			$metadata=property_exists($v, "metadata") ? $v->metadata : null;
+			$list[]=new pattern($v->pattern, $v->name, $metadata);
 		}
 
 		$res=new matcher($list);

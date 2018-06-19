@@ -1,8 +1,6 @@
 <?php
 namespace tools\pattern_matcher;
 
-//!SHORT COMMENT.
-
 //!Represents a chunk of variable data. This is the "id:number" part in the pattern
 //!"hello[id:number].
 class chunk_match extends chunk {
