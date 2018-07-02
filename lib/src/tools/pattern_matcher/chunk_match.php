@@ -60,18 +60,19 @@ class chunk_match extends chunk {
 
 		for($_i; ; $_i++) {
 
+			$char=$_v[$_i];
+			$val.=$char;
+			
 			//We might have arrived at the end of the test string. If we didn't break we are fine.
 			if($_i==$last_index && null===$this->last_character) {
 				break;
-			}
-
-			$char=$_v[$_i];
+			}			
+			
 			//Or perhaps we are a the end of the current match...
 			if($char==$this->last_character) {
 				break;
 			}
 
-			$val.=$char;
 			switch($this->type) {
 				//TODO: What about negative numbers?
 				case self::type_integer: if(!ctype_digit($char)) return false; break;
