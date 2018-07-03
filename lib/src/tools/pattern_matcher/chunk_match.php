@@ -8,10 +8,10 @@ class chunk_match extends chunk {
 	const chr_separate=':';
 	const type_integer=0;
 	const type_alpha=1;
-	const type_alphanum=1;
+	const type_alphanum=2;
 	const literal_integer='int';
 	const literal_alpha='alpha';
-	const literal_alphanum='literal_alphanum';
+	const literal_alphanum='alnum';
 
 	private $type;
 	private $name;
@@ -49,6 +49,7 @@ class chunk_match extends chunk {
 		switch($_t) {
 			case self::literal_integer: $this->type=self::type_integer; break;
 			case self::literal_alpha: $this->type=self::type_alpha; break;
+			case self::literal_alphanum: $this->type=self::type_alphanum; break;
 			default:
 				throw new pattern_matcher_exception("unknown match type"); break;
 		}
@@ -64,12 +65,12 @@ class chunk_match extends chunk {
 
 			$char=$_v[$_i];
 			$val.=$char;
-			
+
 			//We might have arrived at the end of the test string. If we didn't break we are fine.
 			if($_i==$last_index && null===$this->last_character) {
 				break;
-			}			
-			
+			}
+
 			//Or perhaps we are a the end of the current match...
 			if($char==$this->last_character) {
 				break;
