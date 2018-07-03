@@ -8,8 +8,10 @@ class chunk_match extends chunk {
 	const chr_separate=':';
 	const type_integer=0;
 	const type_alpha=1;
+	const type_alphanum=1;
 	const literal_integer='int';
 	const literal_alpha='alpha';
+	const literal_alphanum='literal_alphanum';
 
 	private $type;
 	private $name;
@@ -76,6 +78,7 @@ class chunk_match extends chunk {
 				//TODO: What about negative numbers?
 				case self::type_integer: if(!ctype_digit($char)) return false; break;
 				case self::type_alpha: if(!ctype_alpha($char)) return false; break;
+				case self::type_alphanum: if(!ctype_alnum($char)) return false; break;
 			}
 		}
 
