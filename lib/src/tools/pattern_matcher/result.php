@@ -56,6 +56,11 @@ class result {
 			throw new pattern_matcher_exception("unable to find parameter '$_name'");
 		}
 
-		return array_filter($this->params, function($_item) use ($_name) {return $_name==$_item->get_name();})[0];
+		$data=array_filter($this->params, function($_item) use ($_name) {return $_name==$_item->get_name();});
+		if(!count($data)) {
+			throw new pattern_matcher_exception("unable to find and filter parameter '$_name'");
+		}
+
+		return array_shift($data);
 	}
 }
