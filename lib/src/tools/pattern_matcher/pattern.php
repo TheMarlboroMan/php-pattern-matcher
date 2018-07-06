@@ -75,6 +75,14 @@ class pattern {
 		return $this->name;
 	}
 
+	//!Sets the pattern name. Allows modification of the name to adapt the same
+	//!template chunks to different needs (postfix, suffix, transformation...).
+	public function set_name($_val) {
+
+		$this->name=$_val;
+		return $this;
+	}
+
 	//!splits the pattern into its composing chunks.
 	private function	prepare() {
 

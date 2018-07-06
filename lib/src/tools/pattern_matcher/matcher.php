@@ -66,6 +66,13 @@ class matcher {
 		}
 	}
 
+	//!Applies the function $_f to all patterns. The function shall receive
+	//!a reference to the pattern and can use all of its methods.
+	public function		apply($_f) {
+
+		array_walk($this->list, $_f);
+	}
+
 	//!matches the input string against all patterns. Returns a result
 	//!object.
 	public function 	match($_input) {
