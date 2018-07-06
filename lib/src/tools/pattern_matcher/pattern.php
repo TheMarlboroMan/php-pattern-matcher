@@ -83,6 +83,19 @@ class pattern {
 		return $this;
 	}
 
+	//!Returns the pattern.
+	public function get_pattern() {
+		return $this->raw_pattern;
+	}
+
+	//!Sets the pattern name. Allows modification of the name to adapt the same
+	//!template chunks to different needs (postfix, suffix, transformation...).
+	public function set_pattern($_val) {
+
+		$this->raw_pattern=$_val;
+		return $this;
+	}
+
 	//!splits the pattern into its composing chunks.
 	private function	prepare() {
 
