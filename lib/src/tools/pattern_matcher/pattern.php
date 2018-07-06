@@ -93,11 +93,15 @@ class pattern {
 	public function set_pattern($_val) {
 
 		$this->raw_pattern=$_val;
+		$this->prepare();
+		$this->check_integrity();
 		return $this;
 	}
 
 	//!splits the pattern into its composing chunks.
 	private function	prepare() {
+
+		$this->chunks=[];
 
 		$current='';
 		$mode=self::mode_literal;
