@@ -9,10 +9,17 @@ class matcher {
 
 	//!parses the JSON file in $_filename (absolute path) and returns a
 	//!matcher with all patterns set. The json filename expects to contain
-	//!a single node "patterns", with an array of objects composed of
-	//!"pattern" and "name"  (something like {"patterns":[{"pattern":"x", "name":"y"}]}
+	//!an array of objects composed of "pattern" and "name"
+	//!(something like {"patterns":[{"pattern":"x", "name":"y"}]}
 	//!will throw upon any error in the input, including sanity related ones.
 	public static function	from_file($_filename) {
+
+		$res=new matcher(self::patterns_from_file($_filename));
+		$res->check_sanity();
+		return $res;
+	}
+
+	public static function patterns_from_file($_filename) {
 
 		if(!file_exists($_filename) || !is_file($_filename)) {
 			throw new pattern_matcher_exception("file '$_filename' does not exist");
@@ -23,31 +30,46 @@ class matcher {
 			throw new pattern_matcher_exception("file '$_filename' does not contain valid json");
 		}
 
-		if(!property_exists($json, "patterns")) {
-			throw new pattern_matcher_exception("file '$_filename' does not contain the json node 'patterns'");
+		if(!is_array($json)) {
+			throw new pattern_matcher_exception("file '$_filename' does not contain a valid json array");
 		}
+
+		return self::patterns_from_json($json);
+	}
+
+	public static function patterns_from_json(array $_json) {
 
 		$list=[];
-
-		foreach($json->patterns as $k => $v) {
-
-			if(!property_exists($v, "pattern") || !property_exists($v, "name")) {
-				throw new pattern_matcher_exception("file '$_filename' contains malformed patterns");
-			}
-
-			$metadata=property_exists($v, "metadata") ? $v->metadata : null;
-			$list[]=new pattern($v->pattern, $v->name, $metadata);
+		foreach($_json as $k => $v) {
+			$list[]=self::pattern_from_json($v);
 		}
 
-		$res=new matcher($list);
-		$res->check_sanity();
-		return $res;
+		return $list;
+	}
+
+	public static function	pattern_from_json($v) {
+		if(!property_exists($v, "pattern") || !property_exists($v, "name")) {
+			throw new pattern_matcher_exception("this json contains malformed patterns");
+		}
+
+		$metadata=property_exists($v, "metadata") ? $v->metadata : null;
+		return new pattern($v->pattern, $v->name, $metadata);
 	}
 
 	//!Creates an empty matcher that can be filled with calls to add_pattern.
 	public static function	from_empty() {
 
 		$res=new matcher([]);
+		return $res;
+	}
+
+	public static function	from_matcher_array(array $_m) {
+
+		$res=new matcher([]);
+		foreach($_m as $v) {
+				$res->list=array_merge($res->list, $v->list);
+		}
+		$res->check_sanity();
 		return $res;
 	}
 

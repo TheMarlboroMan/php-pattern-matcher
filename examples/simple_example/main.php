@@ -31,4 +31,4 @@ check($ep, $strings);
 
 //From a file...
 $fp=\tools\pattern_matcher\matcher::from_file('patterns.json');
-check($ep, $strings);
+check($fp, $strings);
