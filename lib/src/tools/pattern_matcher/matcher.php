@@ -63,14 +63,9 @@ class matcher {
 		return $res;
 	}
 
-	public static function	from_matcher_array(array $_m) {
+	public static function	from_patterns(array $_m) {
 
-		$res=new matcher([]);
-		foreach($_m as $v) {
-				$res->list=array_merge($res->list, $v->list);
-		}
-		$res->check_sanity();
-		return $res;
+		return new matcher($_m);
 	}
 
 	//!Manually adds a pattern to the list. Will throw if the insert failed
