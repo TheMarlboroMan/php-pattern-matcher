@@ -9,9 +9,11 @@ class chunk_match extends chunk {
 	const type_integer=0;
 	const type_alpha=1;
 	const type_alphanum=2;
+	const type_urllike=3;
 	const literal_integer='int';
 	const literal_alpha='alpha';
 	const literal_alphanum='alnum';
+	const literal_urllike='urllike';
 
 	private $type;
 	private $name;
@@ -50,6 +52,7 @@ class chunk_match extends chunk {
 			case self::literal_integer: $this->type=self::type_integer; break;
 			case self::literal_alpha: $this->type=self::type_alpha; break;
 			case self::literal_alphanum: $this->type=self::type_alphanum; break;
+			case self::literal_urllike: $this->type=self::type_urllike; break;
 			default:
 				throw new pattern_matcher_exception("unknown match type"); break;
 		}
@@ -76,12 +79,12 @@ class chunk_match extends chunk {
 				$val=substr($val, 0, -1);
 				break;
 			}
-
 			switch($this->type) {
 				//TODO: What about negative numbers?
 				case self::type_integer: if(!ctype_digit($char)) return false; break;
 				case self::type_alpha: if(!ctype_alpha($char)) return false; break;
 				case self::type_alphanum: if(!ctype_alnum($char)) return false; break;
+				case self::type_urllike: if(!ctype_alnum($char) && !in_array($char, ['.','-','_'])) return false; break;
 			}
 		}
 
