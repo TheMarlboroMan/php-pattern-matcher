@@ -5,6 +5,7 @@ namespace tools\pattern_matcher;
 //!match against a string, upon which a result object will be returned.
 class matcher {
 
+	//!List of \tools\pattern_matcher\pattern elements
 	private 		$list=null;
 
 	//!parses the JSON file in $_filename (absolute path) and returns a

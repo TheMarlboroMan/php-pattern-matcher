@@ -40,22 +40,14 @@ class pattern {
 	//!ir a result object if successful-
 	public function		matches($_input) {
 
-//echo 'matching '.$this->raw_pattern.' to '.$_input.PHP_EOL;
-
 		$results=[];
 		$index=0;
+
 		$max_index=strlen($this->raw_pattern);
 		foreach($this->chunks as $v) {
 
 			if(false===$v->match($_input, $index, $results)) {
 				return null;
-			}
-
-			//The input might have no variables and might be shorter than the pattern...
-			//If we have gotten to far, we have approved all matches, so everything
-			//is good.
-			if($index >= $max_index) {
-				break;
 			}
 		}
 
