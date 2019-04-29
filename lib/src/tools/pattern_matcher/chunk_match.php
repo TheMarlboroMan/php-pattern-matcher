@@ -67,7 +67,7 @@ class chunk_match extends chunk {
 		for($_i; ; $_i++) {
 			
 			//We might have arrived at the end of the test string. If we didn't break we are fine.
-			if($_i>=$last_index && null===$this->last_character) {
+			if($_i>$last_index && null===$this->last_character) {
 				break;
 			}
 
