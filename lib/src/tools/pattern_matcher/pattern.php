@@ -53,9 +53,7 @@ class pattern {
 
 		//And yet still, if we didn't consume the full input, we cannot say
 		//this is a match...
-
-		//TODO: Check this in detail...
-		if( $index+1 < strlen($_input)) {
+		if($index < strlen($_input)) {
 			return null;
 		}
 

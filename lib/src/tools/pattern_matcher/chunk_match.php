@@ -74,8 +74,9 @@ class chunk_match extends chunk {
 			$char=$_v[$_i];
 			$val.=$char;
 
+
 			//Or perhaps we are a the end of the current match...
-			if($char==$this->last_character) {
+			if($char==$this->last_character) {				
 				$val=substr($val, 0, -1);
 				break;
 			}
