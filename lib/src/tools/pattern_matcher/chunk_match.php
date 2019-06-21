@@ -65,15 +65,15 @@ class chunk_match extends chunk {
 		$val='';
 
 		for($_i; ; $_i++) {
-			
-			//We might have arrived at the end of the test string. If we didn't break we are fine.
-			if($_i>$last_index && null===$this->last_character) {
+
+			//We might have arrived at the end of the test string without 
+			//failure, which is a match.
+			if($_i>$last_index) {
 				break;
 			}
 
 			$char=$_v[$_i];
 			$val.=$char;
-
 
 			//Or perhaps we are a the end of the current match...
 			if($char==$this->last_character) {				
