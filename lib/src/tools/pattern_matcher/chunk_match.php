@@ -85,7 +85,7 @@ class chunk_match extends chunk {
 				case self::type_integer: if(!ctype_digit($char)) return false; break;
 				case self::type_alpha: if(!ctype_alpha($char)) return false; break;
 				case self::type_alphanum: if(!ctype_alnum($char)) return false; break;
-				case self::type_urllike: if(!ctype_alnum($char) && !in_array($char, ['.','-','_','+','%'])) return false; break;
+				case self::type_urllike: if(!ctype_alnum($char) && !in_array($char, [',', '.','-','_','+','%'])) return false; break;
 			}
 		}
 
